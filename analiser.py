@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # sakana baccaに関する投稿分析
 
-import logging
 import sys
 import os.path
 import bz2
@@ -29,7 +28,7 @@ for row in df.values:
 
 # 各単語をidに変換する辞書の作成
 dictionary = corpora.Dictionary(documents)
-pprint(dictionary.token2id)
+# pprint(dictionary.token2id)
 
 # documentsをcorpus化する
 corpus = list(map(dictionary.doc2bow, documents))
@@ -39,6 +38,7 @@ test_model = models.TfidfModel(corpus)
 
 # corpusへのモデル適用
 corpus_tfidf = test_model[corpus]
+test_model.save('./data/tfidf_model.model')
 
 # id->単語へ変換
 texts_tfidf = []  # id -> 単語表示に変えた文書ごとのTF-IDF
@@ -48,7 +48,12 @@ for doc in corpus_tfidf:
         text_tfidf.append([dictionary[word[0]], word[1]])
     texts_tfidf.append(text_tfidf)
 
-# 表示
+"""
 print('===結果表示===')
 for text in texts_tfidf:
     print(text)
+"""
+
+lsi_model = models.LsiModel(corpus_tfidf, id2word=dictionary, num_topics=50)
+lsi_corpus = lsi_model[corpus_tfidf]
+print(lsi_model.print_topic(0))
