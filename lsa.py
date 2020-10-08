@@ -72,7 +72,7 @@ def plot_graph(documents, start, stop, step, dictionary, corpus):
 
 
 # KH Coderから出力した、文書-単語行列のcsvファイル。
-df = pd.read_csv('./data/word-document1007.csv', sep=',')
+df = pd.read_csv('./data/word-document.csv', sep=',')
 
 # 日本語の取り扱い・語の取捨選択はKH Coderでやる方が楽。
 # そのため(少々ダサいけれども)文書-単語行列からgensimで扱いやすいDictionaryモデルを作成している。
@@ -99,10 +99,10 @@ test_model = models.TfidfModel(corpus)
 # corpusへのモデル適用
 corpus_tfidf = test_model[corpus]
 
-start, stop, step = 2, 30, 2
+start, stop, step = 2, 15, 1
 plot_graph(documents, start, stop, step, dictionary, corpus_tfidf)
 
-number_of_topics = 6
+number_of_topics = 5
 words = 10
 model = create_gensim_lsa_model(
     dictionary,
