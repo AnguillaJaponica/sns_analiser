@@ -2,8 +2,6 @@
 import os.path
 from gensim import corpora, models
 from gensim.models import LsiModel
-from nltk.tokenize import RegexpTokenizer
-from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from gensim.models.coherencemodel import CoherenceModel
 import matplotlib.pyplot as plt
@@ -100,10 +98,10 @@ test_model = models.TfidfModel(corpus)
 corpus_tfidf = test_model[corpus]
 
 start, stop, step = 2, 15, 1
-plot_graph(documents, start, stop, step, dictionary, corpus_tfidf)
+# plot_graph(documents, start, stop, step, dictionary, corpus_tfidf)
 
-number_of_topics = 5
-words = 10
+number_of_topics = 3
+words = 5
 model = create_gensim_lsa_model(
     dictionary,
     corpus_tfidf,
