@@ -6,6 +6,7 @@ from nltk.stem.porter import PorterStemmer
 from gensim.models.coherencemodel import CoherenceModel
 import matplotlib.pyplot as plt
 import pandas as pd
+import factor_analyzer as fa
 
 
 def create_gensim_lsa_model(dictionary, corpus, number_of_topics, words):
@@ -37,7 +38,7 @@ def compute_coherence_values(
               stop : Max num of topics
     purpose : Compute c_v coherence for various number of topics
     Output  : model_list : List of LSA topic models
-              coherence_values : Coherence values corresponding to the LDA model with respective number of topics
+              coherence_values : Coherence values corresponding to the LSA model with respective number of topics
     """
     coherence_values = []
     model_list = []
@@ -98,7 +99,7 @@ test_model = models.TfidfModel(corpus)
 corpus_tfidf = test_model[corpus]
 
 start, stop, step = 2, 15, 1
-# plot_graph(documents, start, stop, step, dictionary, corpus_tfidf)
+plot_graph(documents, start, stop, step, dictionary, corpus_tfidf)
 
 number_of_topics = 3
 words = 5
