@@ -99,7 +99,7 @@ def plot_graph(documents, start, stop, step, dictionary, corpus):
 
 # KH Coderから出力した、文書-単語行列のcsvファイル。
 df = pd.read_csv(
-    './data/Twitter_gensim.csv',
+    './data/GoogleMyBusiness_gensim.csv',
     sep=',')
 
 # 日本語の取り扱い・語の取捨選択はKH Coderでやる方が楽。
@@ -128,7 +128,7 @@ test_model = models.TfidfModel(corpus)
 corpus_tfidf = test_model[corpus]
 
 # 保存
-with open("twitter_corpus_tfidf.pkl", 'wb') as f:
+with open("google_corpus_tfidf.pkl", 'wb') as f:
     pickle.dump(corpus_tfidf, f)
 
 start, stop, step = 1, 50, 1
